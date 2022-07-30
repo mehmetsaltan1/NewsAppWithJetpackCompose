@@ -2,10 +2,7 @@ package com.msaltan.newsapp.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,9 +13,11 @@ import coil.compose.SubcomposeAsyncImage
 import coil.compose.SubcomposeAsyncImageContent
 import com.msaltan.newsapp.models.Articles
 
+@ExperimentalMaterialApi
 @Composable
 fun CustomNewsCard(
-    news:Articles
+    news:Articles,
+    onClick : () -> Unit
 ) {
     Card(
 
@@ -27,15 +26,15 @@ fun CustomNewsCard(
                 horizontal = 16.dp,
                 vertical = 8.dp
             )
-            .height(300.dp)
+            .wrapContentHeight()
             .fillMaxWidth(),
 
         elevation = 8.dp,
-
+       onClick = onClick
     ) {
         Column() {
-            news.title?.let { title ->
                 SubcomposeAsyncImage(
+                    modifier = Modifier.fillMaxWidth(),
                     model = news.urlToImage,
                     contentDescription = "https://example.com/image.jpg"
                 ) {
@@ -48,26 +47,33 @@ fun CustomNewsCard(
                 }
 
                 Text(
-                    text = "Uzay Aracı :"+title,
+                    text = news.title!!,
                     color = Color.Black,
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(
+                            horizontal = 8.dp,
+                            vertical = 8.dp
+                        )
                         .wrapContentWidth(Alignment.CenterHorizontally),
-                    style = MaterialTheme.typography.h5
+                    style = MaterialTheme.typography.h6
                 )
-                val astronot = news.description
+
                 Text(
-                    text = "Astronot :"+astronot,
-                    color = Color.White,
+                    text = news.description!!,
+                    color = Color.Gray,
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(
+                            horizontal = 8.dp,
+                        )
                         .wrapContentWidth(Alignment.CenterHorizontally)
 
                     ,
                     style = MaterialTheme.typography.h6
                 )
 
-            }
+
         }
     }
 }
