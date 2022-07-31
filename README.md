@@ -18,3 +18,11 @@
   * Coil
 - Detay sayfasında haber detayının görüntülenmesi
   * Android WebView
+
+## Uygulama Ekranları
+
+
+<p float="left">
+<img src="screenshots/news_list_page.png" alt="drawing" width="250"/>
+<img src="screenshots/news_detail_page.png" alt="drawing" width="250"/>
+</p>
