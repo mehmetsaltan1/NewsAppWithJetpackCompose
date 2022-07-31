@@ -12,23 +12,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewsRepository {
-    //var newsList:List<Articles>
     var newsDao:NewsDao = ApiUtils.getNewsDao()
-init {
-    //getAllNews()
-    //newsList = arrayListOf()
-}
+
     suspend fun getNews():News{
         return  newsDao.allNews()
     }
-/*    fun getAllNews(){
-        newsDao.allNews().enqueue(object : Callback<News> {
-            override fun onFailure(call: Call<News>?, t: Throwable?) {}
-            override fun onResponse(call: Call<News>, response: Response<News>) {
-                val list = response.body()!!.articles
-                newsList = list
-                Log.e("dsa","$newsList")
-            }
-        })
-    }*/
+
 }

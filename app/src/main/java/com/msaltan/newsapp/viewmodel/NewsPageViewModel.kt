@@ -1,6 +1,5 @@
 package com.msaltan.newsapp.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.msaltan.newsapp.models.Articles
@@ -18,14 +17,10 @@ class NewsPageViewModel : ViewModel() {
         get() = _state
 
     init {
-      //  loadNews()
        viewModelScope.launch {
            val news = newsRepo.getNews()
               _state.value = news.articles
        }
     }
 
-/*    private fun loadNews() {
-        newsRepo.getAllNews()
-    }*/
 }
