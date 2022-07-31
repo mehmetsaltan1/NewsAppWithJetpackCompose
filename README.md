@@ -1,6 +1,6 @@
 # NewsAppWithJetpackCompose
 
-### Toplamda iki günde jetpack compose öğrenip ortaya çıkardığım uygulama
+### Toplamda iki günde jetpack compose öğrenip ortaya çıkarılan uygulama
 
 ## Özet
 ### Newsapi'den çekilen haberleri kullanarak Jetpack Compose ile tasarlanmış ve MVVM mimarisine sahip haber uygulamasıdır.
