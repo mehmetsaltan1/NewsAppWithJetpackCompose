@@ -8,8 +8,7 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.CircularProgressIndicator
-import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -26,27 +25,39 @@ import java.nio.charset.StandardCharsets
 
 @ExperimentalMaterialApi
 @Composable
-fun NewsPage(navController: NavController){
-    val newsPageViewModel = viewModel(modelClass = NewsPageViewModel::class.java)
-    val state by newsPageViewModel.state.collectAsState()
-    LazyColumn {
-        if (state.isEmpty()) {
-            item {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .wrapContentSize(align = Alignment.Center)
-                )
+fun NewsPage(navController: NavController) {
+    Scaffold(
+        topBar = { TopAppBar(title = { Text("News List") }) },
+    ) {
+        val newsPageViewModel = viewModel(modelClass = NewsPageViewModel::class.java)
+        val state by newsPageViewModel.state.collectAsState()
+        LazyColumn {
+            if (state.isEmpty()) {
+                item {
+                    CircularProgressIndicator(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .wrapContentSize(align = Alignment.Center)
+                    )
+                }
+
+            }
+
+            itemsIndexed(items = state) { index, item ->
+                CustomNewsCard(news = item, onClick = {
+                    //Urlleri argüment olarak taşıyabilmek için bir encode işlemi yapılması gerekir burda da o yapıldı.
+                    navController.navigate(
+                        Screen.NewsDetailScreen.withArgs(
+                            URLEncoder.encode(
+                                item.url,
+                                StandardCharsets.UTF_8.toString()
+                            )
+                        )
+                    )
+                })
             }
 
         }
-
-        itemsIndexed(items = state){ index, item ->
-            CustomNewsCard(news = item,onClick = {
-               navController.navigate(Screen.NewsDetailScreen.withArgs(URLEncoder.encode(item.url, StandardCharsets.UTF_8.toString())))
-            })
-        }
-
     }
 
 }

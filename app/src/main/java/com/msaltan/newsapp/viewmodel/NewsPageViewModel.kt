@@ -13,14 +13,15 @@ import kotlinx.coroutines.launch
 class NewsPageViewModel : ViewModel() {
     private val newsRepo = NewsRepository()
     private val _state = MutableStateFlow(emptyList<Articles>())
-        val state:StateFlow<List<Articles>>
+    val state: StateFlow<List<Articles>>
         get() = _state
 
     init {
-       viewModelScope.launch {
-           val news = newsRepo.getNews()
-              _state.value = news.articles
-       }
+        viewModelScope.launch {
+            //NewsRepodan veriler alınıp state değişkenine aktarıldı
+            val news = newsRepo.getNews()
+            _state.value = news.articles
+        }
     }
 
 }

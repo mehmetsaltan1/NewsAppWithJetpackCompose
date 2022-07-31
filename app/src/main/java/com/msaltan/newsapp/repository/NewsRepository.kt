@@ -12,10 +12,10 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class NewsRepository {
-    var newsDao:NewsDao = ApiUtils.getNewsDao()
+    var newsDao: NewsDao = ApiUtils.getNewsDao()
 
-    suspend fun getNews():News{
-        return  newsDao.allNews()
+    suspend fun getNews(): News {
+        return newsDao.allNews()
     }
 
 }
