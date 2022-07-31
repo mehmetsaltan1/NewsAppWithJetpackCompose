@@ -50,6 +50,7 @@ fun CustomNewsCard(
                     val image: Painter = painterResource(id = R.drawable.default_image)
                     Image(
                         painter = image, contentDescription = "image",
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .fillMaxWidth()
                     )
@@ -59,7 +60,7 @@ fun CustomNewsCard(
             }
 
             Text(
-                text = news.title!!,
+                text = news.title.orEmpty(),
                 color = Color.Black,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -72,7 +73,7 @@ fun CustomNewsCard(
             )
 
             Text(
-                text = news.description!!,
+                text = news.description.orEmpty(),
                 color = Color.Gray,
                 modifier = Modifier
                     .fillMaxWidth()
