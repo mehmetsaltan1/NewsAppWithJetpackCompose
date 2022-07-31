@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
+import com.msaltan.newsapp.navigation.Navigation
+import com.msaltan.newsapp.ui.view.DetailPage
 import com.msaltan.newsapp.ui.view.NewsPage
 
 
@@ -17,10 +19,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-       androidx.compose.material.Surface(
+       Surface(
            modifier = Modifier.fillMaxSize()
        ) {
-           NewsPage()
+           Navigation()
        }
         }
     }

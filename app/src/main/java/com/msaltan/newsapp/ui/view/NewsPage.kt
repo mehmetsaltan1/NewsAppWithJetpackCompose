@@ -1,6 +1,8 @@
 package com.msaltan.newsapp.ui.view
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toolbar
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,9 +19,14 @@ import com.msaltan.newsapp.models.Articles
 import com.msaltan.newsapp.ui.CustomNewsCard
 import com.msaltan.newsapp.viewmodel.NewsPageViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.msaltan.newsapp.navigation.Screen
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
+
 @ExperimentalMaterialApi
 @Composable
-fun NewsPage(){
+fun NewsPage(navController: NavController){
     val newsPageViewModel = viewModel(modelClass = NewsPageViewModel::class.java)
     val state by newsPageViewModel.state.collectAsState()
     LazyColumn {
@@ -36,7 +43,7 @@ fun NewsPage(){
 
         itemsIndexed(items = state){ index, item ->
             CustomNewsCard(news = item,onClick = {
-                Log.e("selected","$item")
+               navController.navigate(Screen.NewsDetailScreen.withArgs(URLEncoder.encode(item.url, StandardCharsets.UTF_8.toString())))
             })
         }
 
