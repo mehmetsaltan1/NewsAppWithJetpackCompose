@@ -16,4 +16,5 @@
   * Compose Navigation
 - Uygulama içi resim yükleme işlemleri
   * Coil
-  
+- Detay sayfasında haber detayının görüntülenmesi
+  * Android WebView
